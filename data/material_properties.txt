@@ -1,0 +1,55 @@
+# Material properties for 3D printed concrete
+# Each line includes: parameter name, value, uncertainty
+# Units and explanations for each parameter are provided below:
+
+# compressive_strength: Compressive strength of concrete in MPa
+# - Range: 20 to 100 MPa
+compressive_strength	40	5
+
+# tensile_strength: Tensile strength of concrete in MPa
+# - Range: 2 to 10 MPa
+tensile_strength	5	0.5
+
+# elastic_modulus: Elastic modulus of concrete in MPa
+# - A measure of stiffness, typically between 10,000 and 40,000 MPa
+elastic_modulus	30000	1500
+
+# aggregate_type: Type of coarse aggregate (e.g., gravel, limestone)
+# - Here 'gravel' has an associated uncertainty representing variation
+aggregate_type	gravel	0.2
+
+# fiber_content: Volume fraction of fibers in the mix (dimensionless)
+# - Range: 0 to 0.1 (10% of total volume)
+fiber_content	0.03	0.005
+
+# aggregate_volume_fraction: Total volume fraction of aggregates (dimensionless)
+# - Range: 0.5 to 0.7
+aggregate_volume_fraction	0.6	0.05
+
+# fine_aggregate_size: Average size of fine aggregate particles in meters
+# - Range: 0.0001 to 0.005 meters
+fine_aggregate_size	0.002	0.0005
+
+# coarse_aggregate_size: Average size of coarse aggregate particles in meters
+# - Range: 0.005 to 0.02 meters
+coarse_aggregate_size	0.01	0.001
+
+# aggregate_shape: Shape of aggregate (e.g., angular, rounded)
+# - Here 'angular' has an associated uncertainty representing variation
+aggregate_shape	angular	0.1
+
+# aggregate_alignment: Orientation of aggregates (e.g., random, aligned)
+# - Here 'random' alignment has an uncertainty representing variability
+aggregate_alignment	random	0.15
+
+# shrinkage_rate: Shrinkage rate during curing (dimensionless)
+# - Range: 0.005 to 0.015
+shrinkage_rate	0.01	0.002
+
+# thermal_conductivity: Thermal conductivity in W/(m·K)
+# - Range: 0.5 to 2 W/(m·K)
+thermal_conductivity	1.5	0.3
+
+# fresh_concrete_flow_rate: Flow rate of fresh concrete in m³/s
+# - Range: 0.01 to 0.1 m³/s
+fresh_concrete_flow_rate	0.05	0.01
