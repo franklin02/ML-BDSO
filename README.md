@@ -80,7 +80,7 @@ The framework produces the following plots, saved in `results/`:
 - **Top Sensitivity Scores**: Highlights the parameters most affecting defect probability.
 - **Optimized Print Parameters**: Shows the top parameters and their adjusted values based on optimization.
 
-For more detailed instructions, please refer to the [USER_MANUAL.md](./USER_MANUAL.md).
+For more detailed instructions, please refer to the USER_MANUAL.md.
 ```
 
 ---
