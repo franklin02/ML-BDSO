@@ -248,5 +248,5 @@ This update provides a comprehensive overview for each parameter, including the 
 
 ## Contact
 
-For further assistance, contact [yanglufrank@boisestate.edu].
+For further assistance, contact Prof. Yang Lu, yanglufrank@boisestate.edu.
 ```
