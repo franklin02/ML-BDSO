@@ -86,5 +86,5 @@ The framework produces the following plots, saved in `results/`:
 - **Optimized Print Parameters**: Shows the top parameters and their adjusted values based on optimization.
 
 For more detailed instructions, please refer to the USER_MANUAL.md.
-```
+
 
