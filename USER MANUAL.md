@@ -86,6 +86,7 @@ The ML-BDSO framework aligns with your proposal’s objectives by providing a co
 ### Contribution to Advancing 3D Concrete Printing
 
 The ML-BDSO framework’s approach to handling uncertainties, assessing parameter impact, and optimizing in real time aligns with the objectives of advancing 3D concrete printing technology. This framework offers a structured methodology for developing **robust, adaptive 3D printing processes** that ensure high bonding quality and reduce anisotropic weaknesses. Its data-driven, probabilistic approach positions it as a valuable tool in enhancing the reliability and scalability of 3D printed concrete structures, supporting the broader goals of your research proposal.
+
 ---
 
 ### USER_MANUAL.md
@@ -106,7 +107,7 @@ This tool integrates **Bayesian inference**, **Monte Carlo simulation with adapt
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/ML-BDSO.git
+   git clone https://github.com/franklin02/ML-BDSO.git
    cd ML-BDSO
    ```
 
