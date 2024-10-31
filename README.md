@@ -1,4 +1,5 @@
-Here’s the updated **README.md** file, focusing on providing a concise overview, project structure, setup instructions, and main functionalities of the ML-BDSO framework.
+Here’s the **README.md** file, focusing on providing a concise overview, project structure, 
+setup instructions, and main functionalities of the ML-BDSO framework.
 
 ---
 
@@ -8,7 +9,11 @@ Here’s the updated **README.md** file, focusing on providing a concise overvie
 # ML-BDSO: Multi-Level Bayesian Defect Simulation and Optimization Framework
 
 ## Overview
-The **ML-BDSO** framework is a Python-based tool designed to improve layer bonding quality and reduce defect probabilities in large-scale 3D concrete printing. It combines **Bayesian inference**, **Monte Carlo simulation with adaptive sampling**, **machine learning-based sensitivity analysis**, and **feedback-controlled optimization** to provide real-time adjustments during the printing process, addressing uncertainties in material properties, process parameters, and environmental conditions.
+The **ML-BDSO** framework is a Python-based tool designed to improve layer bonding quality and 
+reduce defect probabilities in large-scale 3D concrete printing. It combines **Bayesian inference**, 
+**Monte Carlo simulation with adaptive sampling**, **machine learning-based sensitivity analysis**, 
+and **feedback-controlled optimization** to provide real-time adjustments during the printing process, 
+addressing uncertainties in material properties, process parameters, and environmental conditions.
 
 ## Project Structure
 
