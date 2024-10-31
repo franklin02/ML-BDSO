@@ -85,4 +85,5 @@ For more detailed instructions, please refer to the [USER_MANUAL.md](./USER_MANU
 
 ---
 
-Please review this README, and once you confirm, I’ll proceed with creating the **USER_MANUAL.md** file. Let me know if there are any additional adjustments you’d like!
+Please review this README, and once you confirm, I’ll proceed with creating the USER_MANUAL.md file. 
+Let me know if there are any additional adjustments you’d like!

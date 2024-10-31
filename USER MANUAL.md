@@ -247,9 +247,10 @@ This update provides a comprehensive overview for each parameter, including the 
 
 ## Contact
 
-For further assistance, contact [your.email@example.com].
+For further assistance, contact [yanglufrank@boisestate.edu].
 ```
 
 ---
 
-This **USER_MANUAL.md** provides detailed setup instructions, descriptions of each step in the framework, explanations for visualizations, and troubleshooting tips. Let me know if further customization is needed!
+This **USER_MANUAL.md** provides detailed setup instructions, descriptions of each step in the framework, 
+explanations for visualizations, and troubleshooting tips. Let me know if further customization is needed!
