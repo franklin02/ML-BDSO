@@ -250,8 +250,3 @@ This update provides a comprehensive overview for each parameter, including the 
 
 For further assistance, contact [yanglufrank@boisestate.edu].
 ```
-
----
-
-This **USER_MANUAL.md** provides detailed setup instructions, descriptions of each step in the framework, 
-explanations for visualizations, and troubleshooting tips. Let me know if further customization is needed!
