@@ -2,53 +2,17 @@ ML-BDSO Framework Results
 ========================================
 
 Bayesian Inference Results:
-compressive_strength: 41.3984
-tensile_strength: 4.7317
-fiber_content: 0.0382
-aggregate_volume_fraction: 0.5821
-fine_aggregate_size: 0.0021
-coarse_aggregate_size: 0.0099
-aggregate_shape: 0.8630
-aggregate_alignment: 1.2023
-shrinkage_rate: 0.0139
-thermal_conductivity: 2.1362
-fresh_concrete_flow_rate: 0.0703
-layer_height: 0.0049
-print_speed: 0.0640
-nozzle_orientation: 90.5504
-curing_time: 19.2791
-extrusion_pressure: 0.8046
-layer_width: 0.0157
-temperature: 26.2443
-humidity: 40.7961
-wind_speed: -0.1142
-ambient_light_exposure: 314.8568
-vibration_level: -0.0014
-Initial Defect Probability: 0.1323
+compressive_strength: mean = 31.4413, std_dev = 0.0100
+tensile_strength: mean = 4.7193, std_dev = 0.0099
+Initial Defect Probability: 0.0000
 
 Monte Carlo Simulation Results:
-Average High-Risk Defect Probability: 24.7067
+Average High-Risk Defect Probability: 18.0800
 
 Sensitivity Analysis Results:
-print_speed: 0.0001
-coarse_aggregate_size: 0.0001
-aggregate_shape: 0.0001
-extrusion_pressure: 0.0001
-wind_speed: 0.0001
-fiber_content: 0.0001
+compressive_strength: 0.0001
 tensile_strength: 0.0001
-layer_height: 0.0001
-aggregate_alignment: 0.0001
-fresh_concrete_flow_rate: 0.0001
 
 Optimized Print Parameters:
-print_speed: 0.0001
-coarse_aggregate_size: 0.0001
-aggregate_shape: 0.0001
-extrusion_pressure: 0.0001
-wind_speed: 0.0001
-fiber_content: 0.0001
+compressive_strength: 0.0001
 tensile_strength: 0.0001
-layer_height: 0.0001
-aggregate_alignment: 0.0001
-fresh_concrete_flow_rate: 0.0001

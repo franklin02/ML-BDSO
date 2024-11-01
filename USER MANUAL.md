@@ -182,6 +182,58 @@ Each file must be formatted correctly with three columns: `parameter`, `value`, 
 This update provides a comprehensive overview for each parameter, including the physical meaning, units, allowable ranges, and additional contextual information, helping users to prepare and understand each input file accurately. Let me know if further adjustments are needed!
 
 
+## Updates 
+
+The following changes have been incorporated:
+
+1. **Updated Input Data Files**:
+   - **New parameters and units**: The input files now include additional parameters for fresh concrete rheology and interlayer bonding characteristics.
+   - **New units for consistency**: Each parameter now specifies units, improving readability and ensuring accurate calculations.
+   - **Error handling for non-numeric values**: Parameters that may contain non-numeric values (e.g., categorical descriptions) are now appropriately skipped.
+
+2. **Updated Python Code**:
+   - **Adaptive Bayesian Inference**: The `bayesian_inference.py` file now includes adaptive updates for prior distributions using new observed data. This allows the framework to iteratively improve accuracy.
+   - **Monte Carlo Simulation Enhancements**: The `monte_carlo_simulation.py` file has improved error handling for cases with `NaN` values, ensuring robust trend analysis.
+   - **Detailed Sensitivity Analysis with Units**: Parameters in `sensitivity_analysis.py` are now presented with units, allowing for clearer interpretation of sensitivity scores.
+   - **Optimized Feedback Control**: The `feedback_optimization.py` file applies a 10% reduction to sensitivity scores, prioritizing top 10 parameters for optimized print quality.
+
+---
+
+## Instructions for Updated Files
+
+### Running ML-BDSO
+
+1. **Setup**:
+   - Ensure all updated `.py` files and data files are in their respective directories.
+   - Use `main.py` to initialize and run the ML-BDSO framework.
+
+2. **Input Data Files**:
+   - `material_properties.txt`, `process_parameters.txt`, `environmental_conditions.txt`: Updated input files are preloaded with new parameters, units, and instructions for use.
+
+3. **Generated Outputs**:
+   - All output files are saved in the `results/` directory:
+     - **Defect Probability Distribution**: Histogram and trend plots.
+     - **Sensitivity Scores**: Top 10 sensitivity scores are shown with units.
+     - **Optimized Parameters**: Feedback optimization results are shown with units.
+
+---
+
+## File Descriptions
+
+1. **Input Files**:
+   - **material_properties.txt**: Contains physical and rheological properties with updated units and descriptions.
+   - **process_parameters.txt**: Updated to include process-specific parameters relevant to layer bonding and defect management.
+   - **environmental_conditions.txt**: Contains environmental variables (temperature, humidity) with added clarity in units.
+
+2. **Python Scripts**:
+   - **main.py**: Runs the entire ML-BDSO workflow and logs outputs in `output_data.txt`.
+   - **bayesian_inference.py**: Initializes adaptive priors based on input data; incorporates new data for posterior updates.
+   - **monte_carlo_simulation.py**: Generates defect probability distributions using robust error handling.
+   - **sensitivity_analysis.py**: Calculates sensitivity scores, ensuring each parameter is labeled with units.
+   - **feedback_optimization.py**: Optimizes top parameters by reducing sensitivity scores to enhance print quality.
+
+---
+
 ## Running the Framework
 
 1. **Execute Main Script**:

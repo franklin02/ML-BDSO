@@ -2,22 +2,24 @@
 # Each line includes: parameter name, value, uncertainty
 # Units and explanations for each parameter are provided below:
 
+parameter               value    uncertainty
+
 # temperature: Ambient temperature in °C
 # - Range: 5 to 40 °C
-temperature	25	2
+temperature             25       2
 
 # humidity: Relative humidity in percentage
 # - Range: 30 to 90%
-humidity	50	5
+humidity                50       5
 
 # wind_speed: Wind speed in m/s, typically relevant for outdoor printing
 # - Range: 0 to 5 m/s
-wind_speed	0	0.1
+wind_speed              0        0.1
 
 # ambient_light_exposure: Light exposure level in Lux
 # - Range: 100 to 1000 Lux
-ambient_light_exposure	300	50
+ambient_light_exposure  300      50
 
 # vibration_level: External vibrations during printing (dimensionless)
 # - Range: 0 to 0.1
-vibration_level	0.01	0.005
+vibration_level         0.01     0.005
