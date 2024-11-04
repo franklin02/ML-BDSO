@@ -2,17 +2,89 @@ ML-BDSO Framework Results
 ========================================
 
 Bayesian Inference Results:
-compressive_strength: mean = 31.4413, std_dev = 0.0100
-tensile_strength: mean = 4.7193, std_dev = 0.0099
-Initial Defect Probability: 0.0000
+compressive_strength: mean = 40.5559, std_dev = 1.0805
+tensile_strength: mean = 4.9970, std_dev = 0.0816
+elastic_modulus: mean = 30000.0000, std_dev = 1500.0000
+aggregate_type: mean = 0.0100, std_dev = 0.2000
+fiber_content: mean = 0.0300, std_dev = 0.0050
+aggregate_volume_fraction: mean = 0.6000, std_dev = 0.0500
+fine_aggregate_size: mean = 0.0020, std_dev = 0.0005
+coarse_aggregate_size: mean = 0.0100, std_dev = 0.0010
+aggregate_shape: mean = 0.0100, std_dev = 0.1000
+aggregate_alignment: mean = 0.0100, std_dev = 0.1500
+shrinkage_rate: mean = 0.0100, std_dev = 0.0020
+thermal_conductivity: mean = 1.5000, std_dev = 0.3000
+fresh_concrete_flow_rate: mean = 0.0500, std_dev = 0.0100
+water_cement_ratio: mean = 0.4000, std_dev = 0.0500
+initial_yield_stress: mean = 1000.0000, std_dev = 200.0000
+plastic_viscosity: mean = 50.0000, std_dev = 10.0000
+thixotropy_index: mean = 1.2000, std_dev = 0.1000
+structural_build_up_rate: mean = 5.0000, std_dev = 0.5000
+viscosity_ratio: mean = 0.8000, std_dev = 0.0500
+temperature_sensitivity_of_viscosity: mean = 0.0200, std_dev = 0.0050
+tensile_adhesion_strength: mean = 0.5000, std_dev = 0.0500
+creep_compliance: mean = 1.1000, std_dev = 0.1000
+elastic_recovery: mean = 0.8500, std_dev = 0.0500
+surface_tension: mean = 0.0450, std_dev = 0.0050
+rate_of_hydration: mean = 1.3000, std_dev = 0.1000
+sedimentation_rate: mean = 0.2000, std_dev = 0.0500
+interlayer_shear_strength: mean = 0.4000, std_dev = 0.0500
+interlayer_cohesion: mean = 1.2000, std_dev = 0.1000
+bond_line_toughness: mean = 3.0000, std_dev = 0.2000
+differential_shrinkage_rate: mean = 0.0050, std_dev = 0.0010
+thermal_expansion_anisotropy: mean = 0.0002, std_dev = 0.0001
+fracture_toughness_parallel: mean = 1.0000, std_dev = 0.1000
+fracture_toughness_perpendicular: mean = 0.8000, std_dev = 0.1000
+interlayer_porosity: mean = 2.0000, std_dev = 0.5000
+fiber_orientation_anisotropy: mean = 0.7000, std_dev = 0.0500
+micro_interlocking_potential: mean = 0.6000, std_dev = 0.1000
+curing_gradient_across_layers: mean = 0.5000, std_dev = 0.1000
+interlayer_tensile_strength: mean = 0.6000, std_dev = 0.0500
+plasticity_index_interface: mean = 0.4000, std_dev = 0.0500
+modulus_gradient_interface: mean = 3000.0000, std_dev = 200.0000
+interlayer_bonding_energy: mean = 3.2000, std_dev = 0.3000
+interfacial_surface_roughness: mean = 50.0000, std_dev = 5.0000
+layer_height: mean = 0.0050, std_dev = 0.0010
+print_speed: mean = 0.0500, std_dev = 0.0100
+nozzle_orientation: mean = 90.0000, std_dev = 5.0000
+curing_time: mean = 24.0000, std_dev = 2.0000
+extrusion_pressure: mean = 0.8000, std_dev = 0.1000
+layer_width: mean = 0.0150, std_dev = 0.0020
+printing_orientation: mean = 0.0000, std_dev = 5.0000
+reinforcement_application_timing: mean = 10.0000, std_dev = 2.0000
+nozzle_temperature_control: mean = 40.0000, std_dev = 5.0000
+layer_compaction_rate: mean = 0.8000, std_dev = 0.0500
+waiting_time_between_layers: mean = 5.0000, std_dev = 1.0000
+temperature: mean = 25.0000, std_dev = 2.0000
+humidity: mean = 50.0000, std_dev = 5.0000
+wind_speed: mean = 0.0000, std_dev = 0.1000
+ambient_light_exposure: mean = 300.0000, std_dev = 50.0000
+vibration_level: mean = 0.0100, std_dev = 0.0050
+Initial Defect Probability: 0.0599
 
 Monte Carlo Simulation Results:
-Average High-Risk Defect Probability: 18.0800
+Average High-Risk Defect Probability: 598.6083
 
 Sensitivity Analysis Results:
-compressive_strength: 0.0001
-tensile_strength: 0.0001
+surface_tension: 0.0001
+fracture_toughness_parallel: 0.0001
+layer_width: 0.0001
+interlayer_cohesion: 0.0001
+interlayer_shear_strength: 0.0001
+curing_gradient_across_layers: 0.0001
+structural_build_up_rate: 0.0001
+nozzle_orientation: 0.0001
+fine_aggregate_size: 0.0001
+aggregate_alignment: 0.0001
 
 Optimized Print Parameters:
-compressive_strength: 0.0001
-tensile_strength: 0.0001
+surface_tension: 0.0001
+fracture_toughness_parallel: 0.0001
+layer_width: 0.0001
+interlayer_cohesion: 0.0001
+interlayer_shear_strength: 0.0001
+curing_gradient_across_layers: 0.0001
+structural_build_up_rate: 0.0001
+nozzle_orientation: 0.0001
+fine_aggregate_size: 0.0001
+aggregate_alignment: 0.0001

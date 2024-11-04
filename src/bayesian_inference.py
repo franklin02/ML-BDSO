@@ -84,35 +84,52 @@ def bayesian_update(material_data, process_data, env_data, new_data=None):
 
     # Initialize priors based on input data
     priors = {}
-    for data in [material_data, process_data, env_data]:
+    default_value = 0.01  # Default if parameter data is missing or non-numeric
+    default_uncertainty = 0.1  # Default uncertainty if missing
+
+    for data, name in zip([material_data, process_data, env_data], ["Material", "Process", "Environmental"]):
         for index, row in data.iterrows():
             parameter = row['parameter']
             value = row['value']
             uncertainty = row['uncertainty']
 
-            # Handle categorical values
+            # Handle categorical values with consistent defaults
             if isinstance(value, str):
                 if parameter == 'aggregate_shape':
                     value = 1 if value == 'angular' else 0.5
                 elif parameter == 'aggregate_alignment':
                     value = 1 if value == 'random' else 0.75
+                print(f"Converted categorical value for {parameter}: {value}")
 
-            if pd.notna(value) and pd.notna(uncertainty):
-                priors[parameter] = np.random.normal(value, uncertainty)
-            else:
-                print(f"Skipping {parameter} due to non-numeric value or uncertainty.")
+            # Assign default values if value or uncertainty is missing
+            if pd.isna(value):
+                print(f"Assigning default value for {parameter}")
+                value = default_value
+            if pd.isna(uncertainty):
+                print(f"Assigning default uncertainty for {parameter}")
+                uncertainty = default_uncertainty
+
+            # Assign prior with the (value, uncertainty) pair
+            priors[parameter] = (value, uncertainty)
+            print(f"Assigned Prior for {parameter}: Value={value}, Uncertainty={uncertainty}")
+
+    # Verify if all parameters were assigned priors
+    print("\nFinal Priors:", priors)
 
     # Auto-update priors if new data is provided
     if new_data:
-        # Ensure updated priors don't have zero standard deviation by setting a minimum threshold
-        current_priors = {param: (np.mean(priors[param]), max(np.std(priors[param]), 0.01))
-                          for param in priors if param in new_data and isinstance(priors[param], (int, float))}
-        priors = auto_update_priors(current_priors, new_data)
-        print("Updated Priors with New Data:", priors)
+        current_priors = {
+            param: (np.mean(priors[param]), max(np.std(priors[param]), 0.01))
+            for param in priors if param in new_data and isinstance(priors[param], tuple)
+        }
+        updated_priors = auto_update_priors(current_priors, new_data)
+        if updated_priors:
+            priors.update(updated_priors)
+            print("Updated Priors with New Data:", priors)
 
-    # Calculate and scale down the initial defect probability
-    valid_priors = [abs(priors[key]) for key in priors if isinstance(priors[key], (int, float)) and not np.isnan(priors[key])]
-    defect_probability = np.nanmean(valid_priors) / 10000 if valid_priors else 0
+    # Ensure defect_probability has a non-zero initial baseline
+    valid_priors = [abs(priors[key][0]) for key in priors if isinstance(priors[key][0], (int, float)) and not np.isnan(priors[key][0])]
+    defect_probability = np.nanmean(valid_priors) / 10000 if valid_priors else 0.0001  # Small baseline
     print("Initial defect probability:", defect_probability)
 
     # Plot initial defect probability distribution
@@ -126,8 +143,8 @@ def bayesian_update(material_data, process_data, env_data, new_data=None):
     plt.close()
 
     # Split parameters for two separate plots, ensuring values are numeric
-    param_names = [param for param in priors.keys() if isinstance(priors[param], (int, float)) and not np.isnan(priors[param])]
-    prior_values = [priors[param] for param in param_names]
+    param_names = [param for param in priors.keys() if isinstance(priors[param][0], (int, float)) and not np.isnan(priors[param][0])]
+    prior_values = [priors[param][0] for param in param_names]
     midpoint = len(param_names) // 2
 
     # First half of parameters

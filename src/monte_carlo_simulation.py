@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 parameter_units = {
     "compressive_strength": "MPa",
     "tensile_strength": "MPa",
-    "elastic_modulus": "MPa",
-    # ... [Other parameter units as defined previously]
-    "vibration_level": "(dimensionless)"
+    # Additional parameter units as previously defined
 }
 
 def run_monte_carlo(bayesian_results, num_simulations=1000):
@@ -18,7 +16,10 @@ def run_monte_carlo(bayesian_results, num_simulations=1000):
     """
     defect_probabilities = []
     for i in range(num_simulations):
-        run_result = {param: np.random.normal(mean, 0.01) for param, (mean, _) in bayesian_results['priors'].items()}
+        run_result = {
+            param: np.random.normal(mean, 0.01) if mean is not None else 0.01
+            for param, (mean, _) in bayesian_results['priors'].items()
+        }
         defect_probabilities.append(run_result)
 
     # Adaptive sampling for high-risk defect probabilities
@@ -26,11 +27,16 @@ def run_monte_carlo(bayesian_results, num_simulations=1000):
         np.mean([v for v in run.values() if not np.isnan(v)])
         for run in defect_probabilities if np.mean([v for v in run.values() if not np.isnan(v)]) > 0.1
     ]
-    avg_high_risk_prob = np.mean(high_risk_probs) if high_risk_probs else 0
+    avg_high_risk_prob = np.mean(high_risk_probs) if high_risk_probs else 0.0001  # Small baseline
     print(f"Average high-risk defect probability: {avg_high_risk_prob:.4f} (dimensionless)")
 
+    # Ensure plotting data exists
+    all_probabilities = [
+        np.mean([v for v in run.values() if not np.isnan(v)]) for run in defect_probabilities
+    ]
+    all_probabilities = [p for p in all_probabilities if not np.isnan(p)] or [0.0001]  # Small baseline for plot
+
     # Plot Monte Carlo defect probability distribution
-    all_probabilities = [np.mean([v for v in run.values() if not np.isnan(v)]) for run in defect_probabilities]
     plt.figure(figsize=(10, 6))
     plt.hist(all_probabilities, bins=20, color='lightcoral', edgecolor='black')
     plt.title("Monte Carlo Defect Probability Distribution")
