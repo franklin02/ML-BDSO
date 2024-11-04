@@ -1,0 +1,173 @@
+# Material properties for 3D printed concrete
+# Each line includes: parameter name, value, uncertainty
+# Units and explanations for each parameter are provided below:
+
+parameter    value    uncertainty
+
+# compressive_strength: Compressive strength of concrete in MPa
+# - Range: 20 to 100 MPa
+compressive_strength    40.0    5.0
+
+# tensile_strength: Tensile strength of concrete in MPa
+# - Range: 2 to 10 MPa
+tensile_strength    5.0    0.5
+
+# elastic_modulus: Elastic modulus of concrete in MPa
+# - Range: 20000 to 40000 MPa
+elastic_modulus    30000.0    1500.0
+
+# aggregate_type: Type of aggregate (categorical: angular, rounded)
+# - Coded as numeric: 1 = angular, 0.5 = rounded
+aggregate_type    angular    0.2
+
+# fiber_content: Fraction of fibers in concrete (dimensionless)
+# - Range: 0.01 to 0.05
+fiber_content    0.03    0.005
+
+# aggregate_volume_fraction: Volume fraction of aggregate (dimensionless)
+# - Range: 0.5 to 0.7
+aggregate_volume_fraction    0.6    0.05
+
+# fine_aggregate_size: Average size of fine aggregate in meters
+# - Range: 0.001 to 0.005 m
+fine_aggregate_size    0.002    0.0005
+
+# coarse_aggregate_size: Average size of coarse aggregate in meters
+# - Range: 0.005 to 0.02 m
+coarse_aggregate_size    0.01    0.001
+
+# aggregate_shape: Shape of aggregate (categorical: angular, rounded)
+# - Coded as numeric: 1 = angular, 0.5 = rounded
+aggregate_shape    angular    0.1
+
+# aggregate_alignment: Alignment of aggregate in layers (categorical: random, aligned)
+# - Coded as numeric: 1 = random, 0.75 = aligned
+aggregate_alignment    random    0.15
+
+# shrinkage_rate: Rate of shrinkage in concrete (dimensionless)
+# - Range: 0.001 to 0.02
+shrinkage_rate    0.01    0.002
+
+# thermal_conductivity: Thermal conductivity of concrete in W/(m·K)
+# - Range: 1 to 3 W/(m·K)
+thermal_conductivity    1.5    0.3
+
+# fresh_concrete_flow_rate: Flow rate of fresh concrete in m³/s
+# - Range: 0.01 to 0.1 m³/s
+fresh_concrete_flow_rate    0.05    0.01
+
+# water_cement_ratio: Water-cement ratio in concrete (dimensionless)
+# - Range: 0.3 to 0.6
+water_cement_ratio    0.4    0.05
+
+# initial_yield_stress: Initial yield stress of concrete in Pa
+# - Range: 500 to 2000 Pa
+initial_yield_stress    1000.0    200.0
+
+# plastic_viscosity: Plastic viscosity of concrete in Pa·s
+# - Range: 20 to 100 Pa·s
+plastic_viscosity    50.0    10.0
+
+# thixotropy_index: Thixotropy index of concrete (dimensionless)
+# - Range: 0.5 to 2
+thixotropy_index    1.2    0.1
+
+# structural_build_up_rate: Rate of structural build-up in Pa/s
+# - Range: 2 to 10 Pa/s
+structural_build_up_rate    5.0    0.5
+
+# viscosity_ratio: Ratio of viscosities for anisotropic flow (dimensionless)
+# - Range: 0.7 to 1.5
+viscosity_ratio    0.8    0.05
+
+# temperature_sensitivity_of_viscosity: Viscosity sensitivity to temperature in Pa·s/°C
+# - Range: 0.01 to 0.05 Pa·s/°C
+temperature_sensitivity_of_viscosity    0.02    0.005
+
+# tensile_adhesion_strength: Adhesion strength between layers in MPa
+# - Range: 0.2 to 1 MPa
+tensile_adhesion_strength    0.5    0.05
+
+# creep_compliance: Creep compliance of concrete (dimensionless)
+# - Range: 0.8 to 1.2
+creep_compliance    1.1    0.1
+
+# elastic_recovery: Elastic recovery percentage (dimensionless)
+# - Range: 0.7 to 0.95
+elastic_recovery    0.85    0.05
+
+# surface_tension: Surface tension of concrete in N/m
+# - Range: 0.03 to 0.06 N/m
+surface_tension    0.045    0.005
+
+# rate_of_hydration: Hydration rate of concrete (dimensionless)
+# - Range: 1 to 2
+rate_of_hydration    1.3    0.1
+
+# sedimentation_rate: Sedimentation rate in fresh concrete (dimensionless)
+# - Range: 0.1 to 0.5
+sedimentation_rate    0.2    0.05
+
+# interlayer_shear_strength: Shear strength between layers in MPa
+# - Range: 0.2 to 1 MPa
+interlayer_shear_strength    0.4    0.05
+
+# interlayer_cohesion: Cohesion level at interfaces (dimensionless)
+# - Range: 1 to 2
+interlayer_cohesion    1.2    0.1
+
+# bond_line_toughness: Bond line toughness in J/m²
+# - Range: 1 to 5 J/m²
+bond_line_toughness    3.0    0.2
+
+# differential_shrinkage_rate: Shrinkage difference across layers (dimensionless)
+# - Range: 0.001 to 0.01
+differential_shrinkage_rate    0.005    0.001
+
+# thermal_expansion_anisotropy: Anisotropic expansion coefficient 1/°C
+# - Range: 0.0001 to 0.0005 1/°C
+thermal_expansion_anisotropy    0.0002    5e-05
+
+# fracture_toughness_parallel: Fracture toughness parallel to layers in MPa·m^0.5
+# - Range: 0.5 to 1.5 MPa·m^0.5
+fracture_toughness_parallel    1.0    0.1
+
+# fracture_toughness_perpendicular: Fracture toughness perpendicular to layers in MPa·m^0.5
+# - Range: 0.5 to 1.5 MPa·m^0.5
+fracture_toughness_perpendicular    0.8    0.1
+
+# interlayer_porosity: Porosity percentage at the interface (%)
+# - Range: 1 to 5 %
+interlayer_porosity    2.0    0.5
+
+# fiber_orientation_anisotropy: Fiber alignment in anisotropic regions (dimensionless)
+# - Range: 0.5 to 1
+fiber_orientation_anisotropy    0.7    0.05
+
+# micro_interlocking_potential: Interlocking level at interfaces (dimensionless)
+# - Range: 0.5 to 1
+micro_interlocking_potential    0.6    0.1
+
+# curing_gradient_across_layers: Curing gradient between layers (dimensionless)
+# - Range: 0.4 to 0.7
+curing_gradient_across_layers    0.5    0.1
+
+# interlayer_tensile_strength: Tensile strength across layers in MPa
+# - Range: 0.4 to 1 MPa
+interlayer_tensile_strength    0.6    0.05
+
+# plasticity_index_interface: Plasticity index at the layer interface (dimensionless)
+# - Range: 0.3 to 0.6
+plasticity_index_interface    0.4    0.05
+
+# modulus_gradient_interface: Gradient of elastic modulus across interfaces in MPa
+# - Range: 2000 to 5000 MPa
+modulus_gradient_interface    3000.0    200.0
+
+# interlayer_bonding_energy: Bonding energy per area at interfaces in J/m²
+# - Range: 1 to 5 J/m²
+interlayer_bonding_energy    3.2    0.3
+
+# interfacial_surface_roughness: Roughness of layer interfaces in µm
+# - Range: 10 to 100 µm
+interfacial_surface_roughness    50.0    5.0
