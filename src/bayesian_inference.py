@@ -14,6 +14,7 @@ def bayesian_update(material_data, process_data, env_data, new_data=None):
         Dictionary containing new observations for parameters to update priors.
     """
     # Dictionary of parameter units
+    # this is to confirm all parameter_units are correct
     parameter_units = {
         "compressive_strength": "MPa",
         "tensile_strength": "MPa",
