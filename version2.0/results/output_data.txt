@@ -2,16 +2,17 @@ ML-BDSO Framework Results
 ========================================
 
 Bayesian Inference Results:
+Classified Defect Type: delamination
 compressive_strength: mean = 40.5970, std_dev = 1.0580
 tensile_strength: mean = 5.0000, std_dev = 0.0806
 elastic_modulus: mean = 30000.0000, std_dev = 1500.0000
-aggregate_type: mean = 0.0100, std_dev = 0.2000
+aggregate_type: mean = 0.0100, std_dev = 0.1000
 fiber_content: mean = 0.0300, std_dev = 0.0050
 aggregate_volume_fraction: mean = 0.6000, std_dev = 0.0500
 fine_aggregate_size: mean = 0.0020, std_dev = 0.0005
 coarse_aggregate_size: mean = 0.0100, std_dev = 0.0010
 aggregate_shape: mean = 0.0100, std_dev = 0.1000
-aggregate_alignment: mean = 0.0100, std_dev = 0.1500
+aggregate_alignment: mean = 0.0100, std_dev = 0.1000
 shrinkage_rate: mean = 0.0100, std_dev = 0.0020
 thermal_conductivity: mean = 1.5000, std_dev = 0.3000
 fresh_concrete_flow_rate: mean = 0.0500, std_dev = 0.0100
@@ -66,5 +67,27 @@ solar_radiation_intensity: mean = 600.0000, std_dev = 50.0000
 Initial Defect Probability: 0.0579
 
 Sensitivity Analysis Results:
+Top 10 Sensitivity Analysis Results for delamination:
+elastic_modulus: 2425081.2050
+modulus_gradient_interface: 42965.5662
+initial_yield_stress: 42058.7444
+solar_radiation_intensity: 2998.3164
+ambient_light_exposure: 2752.7472
+plastic_viscosity: 102.5834
+nozzle_orientation: 30.7116
+nozzle_temperature_control: 26.8140
+printing_orientation: 24.9542
+interfacial_surface_roughness: 24.5295
 
 Optimized Print Parameters:
+Optimized Parameters for delamination:
+elastic_modulus: 0.0000
+modulus_gradient_interface: 0.0000
+initial_yield_stress: 0.0000
+solar_radiation_intensity: 300.1684
+ambient_light_exposure: 24.7253
+plastic_viscosity: 39.7417
+nozzle_orientation: 86.9288
+nozzle_temperature_control: 37.3186
+printing_orientation: 0.0000
+interfacial_surface_roughness: 47.5470

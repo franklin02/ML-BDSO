@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="ml-bdso" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="ml-bdso" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="ML-BDSO" project-jdk-type="Python SDK" />
 </project>
