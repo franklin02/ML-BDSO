@@ -1,67 +1,101 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import logging
+import os
 
-def sensitivity_analysis(defect_data):
-    """
-    Conducts sensitivity analysis on the defect data by calculating sensitivity scores
-    for each parameter's contribution to specific defect probabilities.
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
-    Parameters:
-    - defect_data: Dictionary containing defect types as keys and defect-related parameters as sub-dictionaries.
 
-    Returns:
-    - sensitivity_scores: Dictionary of sensitivity scores for each defect type, sorted in descending order.
-    """
-    sensitivity_scores = {}
-    print("Starting sensitivity analysis with defect data:")
-    print(defect_data)  # Debugging statement to check input structure
+# Function for sensitivity analysis
+def sensitivity_analysis(defect_data, initial_priors):
+    sensitivity_results = {}
 
-    # Ensure defect_data has the correct structure for analysis
-    if isinstance(defect_data, list):
-        defect_data_dict = {"defect_probability": defect_data}
-        defect_data = defect_data_dict
+    # Ensure the results directory exists
+    results_dir = "../results/"
+    os.makedirs(results_dir, exist_ok=True)
 
-    # Calculate sensitivity scores for each defect type
-    for defect_type, parameters in defect_data.items():
-        print(f"Analyzing defect type: {defect_type}")
-        sensitivities = {}
-
-        # Check if parameters are correctly structured
-        if not isinstance(parameters, list) or len(parameters) == 0:
-            print(f"Warning: No parameter data found for defect type '{defect_type}'")
+    for defect_type, data in defect_data.items():
+        # Check if data is a list of dictionaries
+        if not isinstance(data, list) or not all(isinstance(d, dict) for d in data):
+            logging.error(f"Data for defect type '{defect_type}' is not in the expected format.")
             continue
 
-        # Calculate sensitivity scores for each parameter
-        for param, defect_prob in parameters[0].items():
-            print(f"Processing parameter: {param}, Defect Probability: {defect_prob}")
-            try:
-                # Calculate the sensitivity score based on the difference from the mean
-                sensitivity_score = np.abs(defect_prob - np.mean([run.get(param, 0) for run in parameters if param in run]))
-                sensitivities[param] = sensitivity_score
-                print(f"Sensitivity score for {param}: {sensitivity_score}")  # Debugging line
-            except Exception as e:
-                print(f"Error calculating sensitivity for {param}: {e}")
+        # Confirm data structure and contents
+        print(f"Analyzing defect type '{defect_type}' with {len(data)} samples.")
+
+        # Initialize scores dictionary
+        scores = {param: 0 for param in initial_priors.keys()}
+
+        for param in scores.keys():
+            # Collect parameter values for this defect type
+            param_data = [entry.get(param, np.nan) for entry in data if isinstance(entry, dict)]
+            param_data = [value for value in param_data if not np.isnan(value)]
+
+            if not param_data:
+                logging.warning(f"Parameter {param} has no valid data in defect type {defect_type}")
                 continue
 
-        # Sort and store the top sensitivities
-        sorted_sensitivities = dict(sorted(sensitivities.items(), key=lambda item: item[1], reverse=True)[:10])
-        sensitivity_scores[defect_type] = sorted_sensitivities
-        print(f"Top 10 sensitivities for {defect_type}: {sorted_sensitivities}")
+            # Calculate variance for sensitivity score
+            scores[param] = np.var(param_data)
 
-        # Plot sensitivity scores if data is non-empty
-        if sorted_sensitivities:
-            plt.figure(figsize=(12, 8))
-            plt.bar(sorted_sensitivities.keys(), sorted_sensitivities.values(), color='purple', edgecolor='black')
-            plt.xticks(rotation=45, ha="right")
-            plt.xlabel("Parameters")
-            plt.ylabel("Sensitivity Score")
-            plt.title(f"Sensitivity Analysis for {defect_type.capitalize()}")
-            plt.subplots_adjust(bottom=0.3)  # Adjust bottom margin for label space
-            output_path = f"../results/sensitivity_scores_{defect_type}.png"
-            plt.savefig(output_path)
+            # Plot individual predictions for each parameter
+            plt.figure(figsize=(8, 5))
+            plt.plot(param_data, label=param)
+            plt.title(f"{param} Predictions for {defect_type}")
+            plt.xlabel("Sample Index")
+            plt.ylabel(param)
+            plt.legend()
+            plt.tight_layout()
+            plt.savefig(os.path.join(results_dir, f"{defect_type}_{param}_predictions.png"))
             plt.close()
-            print(f"Saved plot for {defect_type} at {output_path}")  # Confirmation message
-        else:
-            print(f"No sensitivity scores to plot for {defect_type}")
 
-    return sensitivity_scores
+        # Sort and save top 10 sensitive parameters based on variance
+        sorted_scores = dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)[:10])
+        sensitivity_results[defect_type] = sorted_scores
+        logging.debug("Top sensitivities for %s: %s", defect_type, sorted_scores)
+
+        # Plot top sensitivities
+        plt.figure(figsize=(10, 6))
+        plt.bar(sorted_scores.keys(), sorted_scores.values())
+        plt.title(f"Top 10 Sensitivity Analysis for {defect_type}")
+        plt.xlabel("Parameters")
+        plt.ylabel("Sensitivity Score (Variance)")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, f"sensitivity_{defect_type}.png"))
+        plt.close()
+
+    logging.debug("Final sensitivity results: %s", sensitivity_results)
+    return sensitivity_results
+
+
+# Example initial_priors dictionary (replace with your actual data)
+initial_priors = {
+    "compressive_strength": 0,
+    "tensile_strength": 0,
+    "elastic_modulus": 0,
+    "aggregate_type": 0,
+    "fiber_content": 0,
+    "aggregate_volume_fraction": 0,
+    "fine_aggregate_size": 0,
+    "coarse_aggregate_size": 0,
+    "aggregate_shape": 0,
+    "aggregate_alignment": 0,
+    # Add any other parameters as needed
+}
+
+# Placeholder defect_data structure (replace with actual defect data)
+defect_data = {
+    "defect_probability": [
+        {"compressive_strength": 41, "tensile_strength": 5, "elastic_modulus": 30000, "aggregate_type": 0.01},
+        {"compressive_strength": 39, "tensile_strength": 4.8, "elastic_modulus": 29000, "aggregate_type": 0.015},
+        # Additional data entries for each sample...
+    ]
+}
+
+# Confirm defect_data structure before running
+print("Defect Data Structure:", defect_data)
+
+# Run sensitivity analysis
+sensitivity_results = sensitivity_analysis(defect_data, initial_priors)

@@ -65,9 +65,6 @@ humidity_fluctuation_rate: mean = 1.0000, std_dev = 0.2000
 solar_radiation_intensity: mean = 600.0000, std_dev = 50.0000
 Initial Defect Probability: 0.0579
 
-Monte Carlo Simulation Results:
-Average High-Risk Defect Probability: 0.0000
-
 Sensitivity Analysis Results:
 
 Optimized Print Parameters:
