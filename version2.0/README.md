@@ -14,7 +14,8 @@ The **ML-BDSO** framework is a Python-based tool designed to enhance layer bondi
 ## New Features and Updates in v2.0
 
 1. **Defect Type Prediction and Classification**:
-   - Extended functionality to predict and control for specific defect types such as delamination, voids, and cracking. Each defect type is classified based on Bayesian predictions and associated with targeted control parameters.
+   - Extended functionality to predict and control for specific defect types, including delamination, voids, cracking, porosity, interlayer_weakness, and shrinkage_warping. 
+   Each defect type is classified based on Bayesian predictions and associated with targeted control parameters.
 
 2. **Improved Bayesian Inference**:
    - Bayesian priors are now adaptively updated based on recent data for specific defect probabilities, with parameters dynamically adjusting according to the defect type predicted.

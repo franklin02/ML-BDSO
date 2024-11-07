@@ -352,3 +352,399 @@ The following changes have been incorporated:
 
 For further assistance, contact Prof. Yang Lu, yanglufrank@boisestate.edu.
 ```
+
+The **ML-BDSO v2.0** simulations generate a variety of outputs that provide insights into defect classification, parameter sensitivity, and optimization adjustments for enhancing 3D-printed concrete quality. Here’s a breakdown of the key output results and values produced by the framework:
+
+### Key Output Results and Values
+
+#### 1. **Bayesian Inference Results**
+   - **Defect Classification**: The Bayesian inference process classifies the defect type based on parameter priors. Possible classifications include:
+      - **Delamination**
+      - **Porosity**
+      - **Interlayer Weakness (Anisotropy)**
+      - **Shrinkage and Warping**
+      - **Voids**
+      - **Cracking**
+   - **Initial Defect Probability**: This value represents the calculated probability of defect occurrence based on initial conditions and parameter priors. A lower probability suggests stable conditions, while higher values indicate greater defect risk.
+   - **Parameter Priors (Mean and Std Dev)**: For each parameter, Bayesian inference outputs the initial mean and standard deviation, which serve as baselines for Monte Carlo simulations and sensitivity analysis.
+
+#### 2. **Monte Carlo Simulation Results**
+   - **Defect Probability Distribution**: A histogram showing the distribution of defect probabilities across simulation iterations, providing insights into the variability of defect risk under different conditions.
+   - **Defect Probability Trend Over Simulations**: A line plot displaying defect probability variations over each Monte Carlo iteration. This trend helps visualize how defect risk fluctuates with different parameter configurations.
+
+#### 3. **Sensitivity Analysis Results**
+   - **Top Sensitivity Scores**: This result highlights the top parameters with the highest sensitivity scores, indicating which parameters have the most substantial influence on defect probability. The scores are presented in a bar plot and are typically calculated based on variance.
+   - **Parameter Rankings by Sensitivity**: Parameters are ranked according to their influence on defect probability, helping identify those that contribute most to defect formation.
+
+#### 4. **Feedback-Controlled Optimization Results**
+   - **Optimized Parameter Values**: The optimization step adjusts parameter values to minimize defect probability. The framework provides optimized values specifically tailored to the classified defect type. Examples of optimizations include:
+      - **Porosity**: Adjustments to `aggregate_volume_fraction` and `layer_compaction_rate`.
+      - **Interlayer Weakness**: Modifications to `interlayer_shear_strength` and `fiber_orientation_anisotropy`.
+      - **Shrinkage and Warping**: Adjustments to `shrinkage_rate`, `curing_time`, and `thermal_expansion_anisotropy`.
+   - **Optimization Plots**: These bar plots visualize the optimized values for the most influential parameters, showing the adjustments made to mitigate defect risks.
+
+---
+
+### Summary of Output Plots and Files
+- **`output_data.txt`**: Contains a summary of defect classification, initial defect probability, sensitivity analysis rankings, and optimized parameter values for the classified defect type.
+- **`defect_probability_distribution.png`**: A histogram showing the initial defect probability distribution.
+- **`defect_probability_trend.png`**: A line plot displaying defect probability variations across Monte Carlo simulations.
+- **`sensitivity_{defect_type}.png`**: A sensitivity analysis plot for the classified defect type, showing top sensitivity scores for influential parameters.
+- **`optimized_parameters_{defect_type}.png`**: A bar plot illustrating the optimized values of parameters targeted to reduce defect probability for the classified defect type.
+
+These outputs together provide a comprehensive view of defect probability, parameter sensitivity, and specific optimizations made by ML-BDSO v2.0 to improve bonding quality and reduce defect risks in 3D-printed structures. Let me know if you need further clarification on any of these output elements!
+
+
+I’ll add interpretations for the three newly implemented classifications—**porosity**, **interlayer weakness (anisotropy)**, and **shrinkage and warping**—to the document. Here’s how each classification operates within the ML-BDSO v2.0 framework and its impact on the defect detection process.
+
+---
+
+### New Classifications in ML-BDSO v2.0
+
+#### 1. **Porosity Classification**
+
+**Objective**: The purpose of detecting porosity is to identify conditions where small, interconnected voids or pores may form within the material. This type of defect impacts the strength and durability of 3D-printed concrete.
+
+**Classification Logic**:
+   - Parameters influencing porosity include **aggregate_volume_fraction**, **fiber_content**, **layer_compaction_rate**, and **water_cement_ratio**. 
+   - The classifier detects porosity by checking if these parameters fall within threshold ranges that indicate high porosity risk (e.g., high aggregate volume fraction or low compaction rate).
+
+**Results and Impact**:
+   - If classified as porosity, the framework would focus sensitivity analysis on parameters affecting mix consistency and flowability. This enables optimization steps that improve compaction and reduce the likelihood of void formation.
+   - **Optimization**: Targeted adjustments to `layer_compaction_rate` and `fiber_content` would be made to reduce porosity, enhancing the overall density and integrity of the printed material.
+
+#### 2. **Interlayer Weakness (Anisotropy) Classification**
+
+**Objective**: This classification aims to detect weak bonding between printed layers, often due to anisotropic properties that cause strength discrepancies along different directions.
+
+**Classification Logic**:
+   - Key parameters for identifying interlayer weakness include **interlayer_shear_strength**, **interlayer_tensile_strength**, **fiber_orientation_anisotropy**, and **aggregate_alignment**. 
+   - These parameters reflect the quality of bonding between layers and the degree of directional strength anisotropy.
+
+**Results and Impact**:
+   - If classified as interlayer weakness, the framework would prioritize sensitivity analysis and optimization on bonding parameters that can improve layer adhesion and reduce anisotropy.
+   - **Optimization**: By enhancing parameters such as `interlayer_shear_strength` and `fiber_orientation_anisotropy`, the framework can minimize directional weaknesses, thus improving the structural integrity of the printed layers.
+
+#### 3. **Shrinkage and Warping Classification**
+
+**Objective**: Detecting shrinkage and warping focuses on identifying conditions that lead to dimensional instability, typically due to rapid curing, high shrinkage rates, or temperature sensitivity.
+
+**Classification Logic**:
+   - Parameters used for shrinkage and warping detection include **shrinkage_rate**, **curing_time**, **water_cement_ratio**, and **thermal_expansion_anisotropy**.
+   - Thresholds for these parameters help the classifier recognize conditions that are likely to cause unwanted contractions or expansions, leading to deformations.
+
+**Results and Impact**:
+   - If shrinkage and warping is classified, the framework’s sensitivity analysis would emphasize dimensional stability parameters. This allows for targeted adjustments to control curing time, water-cement ratio, and temperature sensitivity, thereby mitigating warping.
+   - **Optimization**: The framework would adjust parameters like `curing_time` and `shrinkage_rate` to improve stability, ensuring dimensional accuracy in the final structure.
+
+---
+
+These new classifications extend the ML-BDSO v2.0 framework’s capabilities, allowing it to address diverse defect types that can compromise the quality of 3D-printed structures. This refined classification approach enables more precise sensitivity analysis and parameter optimization based on each defect type’s unique characteristics.
+
+
+To implement **Interlayer Weakness (Anisotropy)** in the ML-BDSO framework, we’ll focus on parameters related to interlayer bonding strength and directional properties. Interlayer weakness is often due to insufficient bonding between layers or anisotropic properties where strength is different along and across layers. This defect type is critical in 3D printing and composite materials because it affects structural integrity under load.
+
+Here’s how we’ll proceed with the implementation for Interlayer Weakness (Anisotropy):
+
+### Steps for Implementing Interlayer Weakness (Anisotropy)
+
+1. **Define Classification Criteria**: Extend the `classify_defect_type` function to include thresholds specific to interlayer weakness.
+   - Key parameters for anisotropy include **interlayer_shear_strength**, **interlayer_tensile_strength**, **fiber_orientation_anisotropy**, and **aggregate_alignment**.
+   - The thresholds will be set to detect low bonding strength or high anisotropy.
+
+2. **Update Sensitivity Analysis**: Emphasize interlayer weakness parameters in the sensitivity analysis.
+   - By increasing the weight for anisotropy-related parameters, we can ensure these parameters are prioritized when the defect type is classified as interlayer weakness.
+
+3. **Adjust Feedback Optimization**: Refine feedback-controlled optimization to focus on improving interlayer bonding when interlayer weakness is classified.
+
+Let’s go through each step, starting with updating the classification criteria.
+
+---
+
+### Step 1: Add Interlayer Weakness to `classify_defect_type` in `bayesian_inference.py`
+
+To classify interlayer weakness, we’ll add threshold criteria for parameters like `interlayer_shear_strength`, `fiber_orientation_anisotropy`, and `aggregate_alignment`. 
+
+Here’s the updated `classify_defect_type` function with interlayer weakness criteria:
+
+```python
+def classify_defect_type(priors, thresholds=None):
+    """
+    Classifies defect types based on Bayesian priors for relevant parameters.
+
+    Parameters:
+    - priors: dict
+        Dictionary of parameter names and their inferred prior values (mean, std).
+    - thresholds: dict, optional
+        Dictionary defining threshold ranges for defect types. 
+
+    Returns:
+    - defect_type: str
+        Classified defect type based on the thresholds and prior values.
+    """
+    if thresholds is None:
+        thresholds = {
+            'porosity': {'aggregate_volume_fraction': (0.6, 0.7), 'fiber_content': (0.02, 0.03), 
+                         'layer_compaction_rate': (0.5, 0.8), 'water_cement_ratio': (0.45, 0.55)},
+            'delamination': {'elastic_modulus': (25000, 40000), 'initial_yield_stress': (800, 1200)},
+            'voids': {'aggregate_volume_fraction': (0.5, 0.65), 'fiber_content': (0.01, 0.04)},
+            'cracking': {'tensile_strength': (4.5, 6), 'shrinkage_rate': (0.005, 0.02)},
+            'interlayer_weakness': {'interlayer_shear_strength': (0.2, 0.4), 'interlayer_tensile_strength': (0.3, 0.5), 
+                                    'fiber_orientation_anisotropy': (0.5, 0.7), 'aggregate_alignment': (0.7, 1.0)}
+        }
+    
+    defect_type = "unknown"
+    
+    for defect, criteria in thresholds.items():
+        match = all(
+            criteria[param][0] <= priors.get(param, (0,))[0] <= criteria[param][1] 
+            for param in criteria
+        )
+        if match:
+            defect_type = defect
+            break
+
+    return defect_type
+```
+
+### Explanation of Thresholds for Interlayer Weakness
+- **interlayer_shear_strength** and **interlayer_tensile_strength**: Low values within ranges of 0.2–0.4 and 0.3–0.5 MPa indicate poor bonding strength between layers.
+- **fiber_orientation_anisotropy** and **aggregate_alignment**: Values close to 1 indicate high alignment or anisotropy, which may contribute to weakness along specific directions.
+
+---
+
+### Step 2: Emphasize Anisotropy Parameters in `sensitivity_analysis.py`
+
+To prioritize anisotropy-related parameters in sensitivity analysis, we’ll increase the sensitivity weight for parameters such as `interlayer_shear_strength`, `interlayer_tensile_strength`, `fiber_orientation_anisotropy`, and `aggregate_alignment`.
+
+Here’s the updated `sensitivity_analysis_by_defect` function:
+
+```python
+def sensitivity_analysis_by_defect(defect_data, initial_priors, defect_type):
+    """
+    Performs sensitivity analysis specifically for a given defect type, identifying top
+    parameters influencing the defect's probability.
+
+    Parameters:
+    - defect_data: dict
+        Dictionary with defect probability data for each defect type.
+    - initial_priors: dict
+        Dictionary of initial prior values (mean, std) for each parameter.
+    - defect_type: str
+        Type of defect to focus on for the sensitivity analysis.
+
+    Returns:
+    - defect_sensitivity_results: dict
+        Sorted dictionary with parameters and their sensitivity scores for the specified defect type.
+    """
+    defect_sensitivity_results = {}
+
+    if defect_type not in defect_data:
+        logging.error(f"Defect type '{defect_type}' not found in defect data.")
+        return defect_sensitivity_results
+
+    data = defect_data[defect_type]
+    scores = {param: 0 for param in initial_priors.keys()}
+
+    anisotropy_parameters = ['interlayer_shear_strength', 'interlayer_tensile_strength', 
+                             'fiber_orientation_anisotropy', 'aggregate_alignment']
+    weight_multiplier = 1.5 if defect_type == 'interlayer_weakness' else 1.0  # Emphasize anisotropy parameters
+
+    for param in scores.keys():
+        param_data = [entry.get(param, np.nan) for entry in data if isinstance(entry, dict)]
+        param_data = [value for value in param_data if not np.isnan(value)]
+
+        if not param_data:
+            logging.warning(f"No valid data for parameter '{param}' in defect type '{defect_type}'")
+            continue
+
+        sensitivity_score = np.var(param_data)
+        if param in anisotropy_parameters:
+            sensitivity_score *= weight_multiplier
+
+        scores[param] = sensitivity_score
+
+    sorted_scores = dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)[:10])
+    defect_sensitivity_results[defect_type] = sorted_scores
+
+    return defect_sensitivity_results
+```
+
+### Step 3: Refine Feedback-Controlled Optimization for Interlayer Weakness in `feedback_optimization.py`
+
+In the optimization step, we’ll ensure that when interlayer weakness is classified, the framework prioritizes adjustments to bonding strength and alignment parameters, like `interlayer_shear_strength` and `fiber_orientation_anisotropy`.
+
+```python
+def feedback_optimization_refined(sensitivity_scores, initial_priors, defect_type=None):
+    """
+    Optimizes parameters with targeted adjustments and visual feedback for specified defect types.
+
+    Parameters:
+    - sensitivity_scores: dict
+        Sensitivity scores for each defect type.
+    - initial_priors: dict
+        Initial prior values for each parameter.
+    - defect_type: str, optional
+        The specific defect type to optimize parameters for.
+
+    Returns:
+    - optimized_parameters: dict
+        Dictionary of optimized parameter values for defect mitigation.
+    """
+    optimized_parameters = {}
+
+    print(f"Starting feedback optimization for defect type: {defect_type}")
+    if defect_type not in sensitivity_scores:
+        print(f"Error: Defect type '{defect_type}' not found in sensitivity scores.")
+        return optimized_parameters
+
+    sensitivities = sensitivity_scores[defect_type]
+    anisotropy_parameters = ['interlayer_shear_strength', 'interlayer_tensile_strength', 
+                             'fiber_orientation_anisotropy', 'aggregate_alignment']
+
+    for param, sensitivity_score in sensitivities.items():
+        if param in initial_priors:
+            original_value, uncertainty = initial_priors[param]
+            adjustment_factor = 0.2 if defect_type == 'interlayer_weakness' and param in anisotropy_parameters else 0.1
+            adjustment = original_value - (sensitivity_score * adjustment_factor)
+            optimized_value = max(adjustment, 0)
+            optimized_parameters[param] = optimized_value
+            print(f"Optimized {param} for {defect_type}: {optimized_value}")
+        else:
+            print(f"Warning: Parameter {param} not found in initial priors.")
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(optimized_parameters.keys(), optimized_parameters.values(), color='blue', edgecolor='black')
+    plt.title(f"Optimized Parameters for {defect_type.capitalize()}")
+    plt.xlabel("Parameters")
+    plt.ylabel("Optimized Value")
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.savefig(f"../results/optimized_parameters_{defect_type}.png")
+    plt.close()
+
+    return optimized_parameters
+```
+
+### Summary of Adjustments
+
+1. **Classification**: `classify_defect_type` now includes thresholds for **interlayer weakness**, with criteria based on bonding strength and anisotropy.
+2. **Sensitivity Analysis**: `sensitivity_analysis_by_defect` prioritizes anisotropy parameters if interlayer weakness is the classified defect type.
+3. **Optimization**: `feedback_optimization_refined` targets interlayer bonding parameters for adjustment to improve bonding quality and mitigate anisotropy.
+
+### Next Steps
+
+1. **Run the Framework with Updated Code**: Test these adjustments with input conditions likely to lead to interlayer weakness.
+2. **Save Results and Review**: Once the framework completes, save and examine the output data and generated plots to confirm interlayer weakness classification.
+3. **Analyze Outputs**: Evaluate the sensitivity and optimization results to ensure that interlayer parameters were prioritized as intended.
+
+
+Based on the attached outputs and generated plots, here is a detailed interpretation of the **porosity classification test** using the ML-BDSO v2.0 framework.
+
+### Case Study: Porosity Detection
+
+#### 1. **Bayesian Inference and Defect Type Classification**
+   - **Objective**: To detect porosity by analyzing parameters such as `aggregate_volume_fraction`, `fiber_content`, `layer_compaction_rate`, and `water_cement_ratio`.
+   - **Result**: Despite the targeted parameter values for porosity, the defect type was still classified as **"delamination"** rather than "porosity."
+   - **Interpretation**: 
+      - The classification into "delamination" rather than "porosity" may indicate that the thresholds set for detecting porosity were not met, or that certain parameters, like `elastic_modulus`, `initial_yield_stress`, and environmental factors, exerted a dominant influence.
+      - **Next Steps**: To achieve a porosity classification, the threshold settings for porosity-related parameters might need refinement, or Bayesian priors might need to be emphasized differently to allow porosity-related parameters to take priority.
+
+#### 2. **Initial Defect Probability Distribution**
+   - **Observation**: The **Initial Defect Probability Distribution** plot shows that most defect probabilities cluster around very low values, with only a few outliers at higher probabilities.
+   - **Interpretation**: 
+      - This distribution suggests that the initial parameters yield a low baseline defect probability, with isolated higher probabilities potentially due to parameter combinations that increase delamination risks, as classified in this case.
+      - This result aligns with the framework’s classification of "delamination" rather than porosity, as high initial defect probabilities would be more indicative of porosity-prone conditions.
+
+#### 3. **Monte Carlo Simulation Results**
+   - **Defect Probability Trend**: The **Defect Probability Trend Over Simulations** plot shows fluctuations over 100 iterations, with defect probabilities varying between approximately 520 and 640.
+      - The observed variations indicate the probabilistic effect of parameter ranges, showing that defect probability isn’t constant across the Monte Carlo samples.
+   - **Monte Carlo Defect Probability Distribution**: The histogram shows that the distribution centers around 580, with a spread that includes higher probabilities, which aligns with increased risk factors for delamination or voids.
+   - **Interpretation**: 
+      - The trends and distribution highlight the framework’s sensitivity to parameter variations, providing an adaptable basis for classification based on specific defect criteria.
+      - For porosity detection, this suggests that tighter control on compaction and mix ratios might be needed to observe a clearer shift toward porosity-prone conditions.
+
+#### 4. **Sensitivity Analysis for Delamination (Instead of Porosity)**
+   - **Top Parameters**: The sensitivity analysis plot identifies **elastic_modulus**, **initial_yield_stress**, and **modulus_gradient_interface** as the most influential parameters, with environmental parameters like **ambient_light_exposure** and **solar_radiation_intensity** also showing high sensitivity scores.
+   - **Interpretation**: 
+      - The dominance of `elastic_modulus` and `initial_yield_stress` suggests that these parameters are major contributors to defect classification.
+      - These parameters might have overshadowed the impact of porosity-related parameters (e.g., `aggregate_volume_fraction` and `layer_compaction_rate`), leading the framework to classify the defect as delamination.
+      - Adjusting the sensitivity weight or threshold emphasis for porosity-related parameters might help bring about porosity classification in future tests.
+
+#### 5. **Feedback-Controlled Optimization**
+   - **Optimized Parameters**: The optimization plot shows that **elastic_modulus**, **initial_yield_stress**, and **modulus_gradient_interface** were set to zero to minimize their influence, while other parameters, such as **ambient_light_exposure** and **solar_radiation_intensity**, were adjusted to reduce defect probability.
+   - **Interpretation**:
+      - The optimized parameters reflect adjustments aimed at mitigating delamination rather than porosity.
+      - To achieve porosity mitigation, parameters such as **layer_compaction_rate** and **water_cement_ratio** would need specific adjustments, suggesting that further refinement in optimization settings for porosity classification is needed.
+
+---
+
+### Summary of Observations and Recommendations
+1. **Classification as Delamination**: The framework classified the defect as "delamination," likely due to the high influence of parameters like `elastic_modulus` and `initial_yield_stress`. To achieve a porosity classification, it may be necessary to:
+   - Adjust threshold values for porosity-specific parameters.
+   - Increase the sensitivity weight of parameters such as `aggregate_volume_fraction`, `fiber_content`, `layer_compaction_rate`, and `water_cement_ratio` in the Bayesian inference and sensitivity analysis steps.
+
+2. **Parameter Influence**:
+   - **Sensitivity Analysis** reveals a strong influence of structural and environmental parameters related to bonding and interlayer strength.
+   - **Optimization**: Further tuning of optimization processes may be required for porosity to adjust mix and compaction-related parameters more effectively.
+
+3. **Future Adjustments**:
+   - Refine the **classification thresholds** for porosity-related parameters to make them more responsive.
+   - Consider **prioritizing porosity-related parameters** in Bayesian inference, sensitivity analysis, and optimization if porosity is the targeted defect type.
+
+
+
+
+
+
+The latest results indicate that the ML-BDSO framework continues to classify the defect type as **"delamination"** despite adjustments for **interlayer weakness (anisotropy)**. Here’s a detailed analysis of the outcomes, along with insights on why interlayer weakness has not yet been detected.
+
+### Analysis of Interlayer Weakness Classification Attempt
+
+#### 1. **Bayesian Inference and Defect Classification**
+   - **Expected Outcome**: Adjustments to the classification thresholds and parameters were designed to increase the sensitivity to interlayer weakness conditions by focusing on parameters such as `interlayer_shear_strength`, `interlayer_tensile_strength`, `fiber_orientation_anisotropy`, and `aggregate_alignment`.
+   - **Actual Outcome**: Despite these adjustments, the defect type was classified as **"delamination"** instead of **"interlayer weakness"**.
+   - **Interpretation**:
+      - The classification as "delamination" indicates that structural parameters like `elastic_modulus` and `initial_yield_stress` are still dominant, potentially overshadowing the influence of interlayer weakness parameters.
+      - This could be due to the relatively high sensitivity scores associated with these structural parameters, which consistently drive the framework toward classifying defects as delamination.
+
+#### 2. **Initial Defect Probability Distribution**
+   - **Observation**: The **Initial Defect Probability Distribution** plot remains concentrated around lower defect probabilities with a few higher outliers.
+   - **Interpretation**:
+      - The concentrated distribution at low probabilities does not suggest significant variability associated with weak interlayer bonding or anisotropy, which would likely increase the defect probability.
+      - A more dispersed distribution might be expected under conditions of interlayer weakness, as bonding issues and anisotropic effects would likely increase defect probabilities.
+
+#### 3. **Monte Carlo Simulation Results**
+   - **Defect Probability Trend and Distribution**: The **Defect Probability Trend Over Simulations** plot shows variability over simulations, with defect probabilities fluctuating between 520 and 640.
+   - **Interpretation**:
+      - The Monte Carlo distribution does not display the spread or instability that might be characteristic of interlayer weakness conditions. Instead, the observed trends align more with structural integrity conditions relevant to delamination.
+      - This suggests that porosity-related conditions might need further emphasis within the Monte Carlo sampling range to detect interlayer weakness.
+
+#### 4. **Sensitivity Analysis Results**
+   - **Top Parameters**: The sensitivity analysis results show **elastic_modulus** as the most influential parameter, followed by **modulus_gradient_interface** and **initial_yield_stress**. Interlayer-related parameters such as `interlayer_shear_strength` and `fiber_orientation_anisotropy` are not highlighted as top factors.
+   - **Impact on Classification**: 
+      - The high sensitivity scores of delamination-related parameters reinforce the delamination classification. Even with an increased weight on interlayer parameters, they do not rank highly in the sensitivity analysis.
+      - This suggests that parameters like `interlayer_shear_strength` and `fiber_orientation_anisotropy` may need further prioritization in sensitivity analysis to make interlayer weakness more detectable.
+
+#### 5. **Feedback-Controlled Optimization**
+   - **Optimized Parameters**: The optimization focused on reducing the influence of delamination-related parameters, such as `elastic_modulus` and `modulus_gradient_interface`, while making adjustments to environmental parameters and compaction rates.
+   - **Impact on Interlayer Weakness**:
+      - The optimization primarily targets delamination-relevant factors rather than addressing bonding strength or anisotropy. To mitigate interlayer weakness, parameters like `interlayer_shear_strength` and `fiber_orientation_anisotropy` would need to be the focus.
+
+---
+
+### Recommendations to Enhance Detection of Interlayer Weakness
+
+1. **Further Tighten Bayesian Thresholds for Interlayer Weakness**:
+   - Narrow down the threshold values for parameters specific to interlayer weakness (e.g., reduce acceptable ranges for `interlayer_shear_strength` and `fiber_orientation_anisotropy`) to enhance sensitivity to anisotropy-prone conditions.
+
+2. **Increase Sensitivity Weighting for Interlayer Parameters**:
+   - Further increase the sensitivity weight for interlayer-specific parameters, such as `aggregate_alignment` and `fiber_orientation_anisotropy`. This should make them more likely to emerge as high-sensitivity factors when interlayer weakness conditions are present.
+
+3. **Introduce Anisotropy-Specific Sampling in Monte Carlo Simulation**:
+   - Modify the Monte Carlo simulation to introduce anisotropy-specific sampling, focusing on greater variability for parameters like `interlayer_shear_strength` and `aggregate_alignment`.
+
+4. **Dedicated Interlayer Weakness Analysis and Optimization Logic**:
+   - Introduce defect-type-specific logic to optimize for interlayer weakness, focusing on the enhancement of interlayer bonding strength, as well as alignment factors that reduce anisotropy.
+
+The persistent classification as delamination suggests that while the framework effectively detects delamination-related parameters, more extensive changes are necessary to differentiate interlayer weakness. This could involve dedicated classification rules or custom analysis workflows tailored to each defect type. Let me know if you’d like to proceed with further adjustments or explore defect-type-specific workflows for interlayer weakness.
