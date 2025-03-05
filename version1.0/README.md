@@ -15,7 +15,21 @@ reduce defect probabilities in large-scale 3D concrete printing. It combines **B
 and **feedback-controlled optimization** to provide real-time adjustments during the printing process, 
 addressing uncertainties in material properties, process parameters, and environmental conditions.
 
-## New Features and Updates (as of Today)
+ML-BDSO framework Developer: Dr. Yang Lu (P.E.) Associate Professor of Civil Engineering at Boise State University. 
+Dr. Lu's expertise lies in hardened concrete properties prediction, long-term durability assessment, infrastructure 
+material database management, material quality control, uncertainty quantification, and pavement evaluation. He 
+has extensive experience in assessing performance measures and durability solutions for civil infrastructure materials.
+
+His expertise in , and AI-driven performance 
+modeling . He has developed multiscale 
+homogenization frameworks, virtual testing platforms, and Bayesian inference-based optimization models. 
+
+
+Copyright © 2024 Dr. Yang Lu. This software and accompanying documentation are licensed under the MIT License. All rights reserved. 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
+conditions of the MIT License are met. For any inquiries or collaborations, please contact Dr. Yang Lu through Boise State University.
+
+## New Features and Updates
 
 1. **Enhanced Input Data Files**:
    - **New Parameters**: Expanded input files with added rheological and anisotropic properties for fresh concrete and 3D printed layers.
@@ -57,7 +71,7 @@ ML-BDSO/
 │   ├── README.md                      # Project overview, running instructions, and file structure
 │   └── USER_MANUAL.md                 # Detailed user manual with updated instructions
 │
-└── LICENSE.md                         # License file for the project (e.g., MIT License)
+└── LICENSE.md                         # License file for the project
 ```
 
 ## Dependencies

@@ -11,6 +11,20 @@ Copy code
 ## Overview
 The **ML-BDSO** framework is a Python-based tool designed to enhance layer bonding quality and reduce defect probabilities in large-scale 3D concrete printing. This updated version combines **Bayesian inference**, **Monte Carlo simulation with adaptive sampling**, **sensitivity analysis**, and **feedback-controlled optimization** to provide refined parameter control based on defect type classifications and the prediction of specific defect types for better-quality 3D printed structures.
 
+ML-BDSO framework Developer: Dr. Yang Lu (P.E.) Associate Professor of Civil Engineering at Boise State University. 
+Dr. Lu's expertise lies in hardened concrete properties prediction, long-term durability assessment, infrastructure 
+material database management, material quality control, uncertainty quantification, and pavement evaluation. He 
+has extensive experience in assessing performance measures and durability solutions for civil infrastructure materials.
+
+His expertise in , and AI-driven performance 
+modeling . He has developed multiscale 
+homogenization frameworks, virtual testing platforms, and Bayesian inference-based optimization models. 
+
+
+Copyright © 2024 Dr. Yang Lu. This software and accompanying documentation are licensed under the MIT License. All rights reserved. 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
+conditions of the MIT License are met. For any inquiries or collaborations, please contact Dr. Yang Lu through Boise State University.
+
 ## New Features and Updates in v2.0
 
 1. **Defect Type Prediction and Classification**:
@@ -85,7 +99,7 @@ ML-BDSO/
 │   ├── README.md                      # Project overview, running instructions, and file structure
 │   └── USER_MANUAL.md                 # Detailed user manual with updated instructions
 │
-└── LICENSE.md                         # License file for the project (e.g., MIT License)
+└── LICENSE.md                         # License file for the project
 ```
 
 ## Dependencies
