@@ -52,7 +52,7 @@ reduce defect probabilities in large-scale 3D concrete printing. It combines **B
 and **feedback-controlled optimization** to provide real-time adjustments during the printing process, 
 addressing uncertainties in material properties, process parameters, and environmental conditions.
 
-## New Features and Updates (as of Today)
+## New Features and Updates
 
 1. **Enhanced Input Data Files**:
    - **New Parameters**: Expanded input files with added rheological and anisotropic properties for fresh concrete and 3D printed layers.
