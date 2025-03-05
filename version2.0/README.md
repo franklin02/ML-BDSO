@@ -13,13 +13,8 @@ The **ML-BDSO** framework is a Python-based tool designed to enhance layer bondi
 
 ML-BDSO framework Developer: Dr. Yang Lu (P.E.) Associate Professor of Civil Engineering at Boise State University. 
 Dr. Lu's expertise lies in hardened concrete properties prediction, long-term durability assessment, infrastructure 
-material database management, material quality control, uncertainty quantification, and pavement evaluation. He 
-has extensive experience in assessing performance measures and durability solutions for civil infrastructure materials.
-
-His expertise in , and AI-driven performance 
-modeling . He has developed multiscale 
-homogenization frameworks, virtual testing platforms, and Bayesian inference-based optimization models. 
-
+material database management, material quality control, uncertainty quantification, and pavement performance evaluation. 
+He has developed multiscale homogenization frameworks, virtual testing platforms, and Bayesian inference-based optimization models. 
 
 Copyright © 2024 Dr. Yang Lu. This software and accompanying documentation are licensed under the MIT License. All rights reserved. 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
