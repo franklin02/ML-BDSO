@@ -20,9 +20,10 @@ Dr. Lu's expertise lies in hardened concrete properties prediction, long-term du
 material database management, material quality control, uncertainty quantification, and pavement performance evaluation. 
 He has developed multiscale homogenization frameworks, virtual testing platforms, and Bayesian inference-based optimization models. 
 
-Copyright © 2024 Dr. Yang Lu. This software and accompanying documentation are licensed under the MIT License. All rights reserved. 
+
+Copyright © 2024 Dr. Yang Lu. This software and accompanying documentation are licensed under the [Apache License 2.0] License. All rights reserved. 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
-conditions of the MIT License are met. For any inquiries or collaborations, please contact Dr. Yang Lu through Boise State University.
+conditions of the [Apache License 2.0] License are met. For any inquiries or collaborations, please contact Dr. Yang Lu through Boise State University.
 
 ## New Features and Updates
 
